@@ -12,3 +12,11 @@ macro(check_libm_needed VAR_LIBM_NEEDED)
     endif()
 
 endmacro()
+
+
+macro(run_ypatchy OUTFILE INFILE)
+    set(ypatchy ${CMAKE_SOURCE_DIR}/util/ypatchy.pl)
+    add_custom_command(OUTPUT ${OUTFILE}
+    COMMAND ${ypatchy} - ${OUTFILE} ${INFILE} .go
+    COMMENT "running ypatchy on ${INFILE} to generate ${OUTFILE}")
+endmacro()
